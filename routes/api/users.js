@@ -64,19 +64,25 @@ router.post('/login',(req,res) =>{
       if(!isMatch){
         return res.status(400).json({
           password: 'Password does not match.'
-        })
+        });
       }
       const payload = {
         id: user.id,
         name: user.name,
         avatar: user.avatar
       };
-      jwt.sign(payload,keys.secretOrKey,{expiresIn: 3600},(err,token)=>{if (err) throw err;
+      jwt.sign(
+        payload,
+        keys.secretOrKey,
+        {expiresIn: 3600},
+        (err,token) => {
+          if (err) throw err;
+
       return res.json({
         success: true,
-        token:'Bearer' + token
-      })
-    })
+        token: "Bearer" + token
+      });
+    });
       
     })
     .catch(err => console.log(err));
@@ -84,12 +90,13 @@ router.post('/login',(req,res) =>{
   })
   .catch(err => console.log(err));
   
-})
+});
 
 // @route Post api/users/current
 // @desc return current user
 // @access Private
-router.get('/current',passport.authenticate('jwt',{session: false})),
+router.get('/current',
+passport.authenticate('jwt',{session: false})),
 (req,res) => {
 res.json({msg:'Success'});
 
