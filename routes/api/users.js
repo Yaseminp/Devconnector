@@ -31,7 +31,7 @@ if (user) {
     r: 'pg',
     d:'mm'
    });
-  const newUser= new User({
+  const newUser = new User({
     name: req.body.name,
     email: req.body.email,
     avatar,
