@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classnames from 'classnames';
 
  class Register extends Component {
    constructor(){
      super();
-     this.state ={
+     this.state = {
        name: '',
        email:'',
        password:'',
@@ -46,18 +47,26 @@ import axios from 'axios';
               <p className="lead text-center">Create your DevConnector account</p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <input type="text" className={classnames('form-control form-control-lg',{'is-invalid': errors.name})} placeholder="Name" value={this.state.name} onChange={this.onChange} name="name" required />
+                  <input type="text" className={classnames('form-control form-control-lg',{
+                    'is-invalid': errors.name })} placeholder="Name" value={this.state.name} onChange={this.onChange} name="name" required />
+                    {errors.name && (
+                      <div 
+                      className="invalid-feedback">{errors.name}</div>
+                    )}
 
                 </div>
                 <div className="form-group">
-                  <input type="email" className={classnames('form-control form-control-lg', { 'is-invalid': errors.email })} placeholder="Email Address" value={this.state.email} onChange={this.onChange} name="email" />
+                  <input type="email" className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.email })} placeholder="Email Address" value={this.state.email} onChange={this.onChange} name="email" />
                   <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
                 </div>
                 <div className="form-group">
-                  <input type="password" className={classnames('form-control form-control-lg', { 'is-invalid': errors.password })} placeholder="Password" value={this.state.password} onChange={this.onChange} name="password" />
+                  <input type="password" className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.password })} placeholder="Password" value={this.state.password} onChange={this.onChange} name="password" />
                 </div>
                 <div className="form-group">
-                  <input type="password" className={classnames('form-control form-control-lg', { 'is-invalid': errors.password2})} placeholder="Confirm Password" value={this.state.password2} onChange={this.onChange} name="password2" />
+                  <input type="password" className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.password2})} placeholder="Confirm Password" value={this.state.password2} onChange={this.onChange} name="password2" />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

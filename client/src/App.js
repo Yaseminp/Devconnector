@@ -4,8 +4,8 @@ import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import{BrowserRouter as Router, Route} from 'react-router-dom';
-import Register from './component/auth/Register';
-import Login from './component/auth/Login';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 function App() {
   return (
