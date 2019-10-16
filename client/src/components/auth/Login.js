@@ -30,7 +30,9 @@ class Login extends Component {
     axios
       .post('/api/users/login', newUser)
       .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+      .catch(err => this.setState({
+        errors: err.response.data 
+      }));
   }
 
   render() {
@@ -45,7 +47,9 @@ class Login extends Component {
               <p className="lead text-center">Sign in to your DevConnector account</p>
               <form noValidate onSubmit = {this.onSubmit}>
                 <div className="form-group">
-                  <input type="email" className={classnames('form-control form-control-lg', { 'is-invalid': errors.email })} placeholder="Email Address" value={this.state.email} onChange={this.onChange} name="email" />
+                  <input type="email" className={classnames('form-control form-control-lg', { 
+                    'is-invalid': errors.email 
+                    })} placeholder="Email Address" value={this.state.email} onChange={this.onChange} name="email" />
                   {errors.email && (
                       <div
                     className="invalid-feedback">{errors.email}</div>

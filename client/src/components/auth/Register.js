@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import classnames from 'classnames';
+import { registerUser }from '../../actions/authActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
  class Register extends Component {
    constructor(){
@@ -30,11 +32,14 @@ import classnames from 'classnames';
        password2: this.state.password2
      };
 
-     axios
-     .post('/api/users/register' , newUser)
-     .then(res => console.log (res.data))
-     .catch(err => this.setState({errors: err.response.data}));
-   }
+     this.props.registerUser(newUser,this.props.history);
+    }
+    
+    componentWillReceiveProps(nextProps) {
+      if(nextProps.errors){
+        this.setState({errors: nextProps.errors});
+      }
+     }
 
   render() {
     const {errors} = this.state;
@@ -48,12 +53,12 @@ import classnames from 'classnames';
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input type="text" className={classnames('form-control form-control-lg',{
-                    'is-invalid': errors.name })} placeholder="Name" value={this.state.name} onChange={this.onChange} name="name" required />
+                    'is-invalid': errors.name 
+                    })} placeholder="Name" 
+                    value={this.state.name} onChange={this.onChange} name="name" required />
                     {errors.name && (
-                      <div 
-                      className="invalid-feedback">{errors.name}</div>
+                      <div className="invalid-feedback">{errors.name}</div>
                     )}
-
                 </div>
                 <div className="form-group">
                   <input type="email" className={classnames('form-control form-control-lg', {
@@ -89,4 +94,15 @@ import classnames from 'classnames';
     )
   }
 }
-export default Register
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+export default connect(mapStateToProps, {registerUser})(Register);
