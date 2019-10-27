@@ -26,7 +26,6 @@ mongoose
   .catch(err => console.log(err));
 
 //First route
-app.get("/", (req, res) => res.send("hello!"));
 
 app.use('/api/users',users);
 app.use('/api/profile',profile);
