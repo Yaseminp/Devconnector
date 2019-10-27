@@ -10,7 +10,6 @@ import {
   DELETE_POST
 } from './types';
 
-
 // Add Post
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
@@ -29,7 +28,6 @@ export const addPost = postData => dispatch => {
       })
     );
 };
-
 
 // Get Posts
 export const getPosts = () => dispatch => {
@@ -50,7 +48,6 @@ export const getPosts = () => dispatch => {
     );
 };
 
-
 // Get Post
 export const getPost = id => dispatch => {
   dispatch(setPostLoading());
@@ -70,7 +67,6 @@ export const getPost = id => dispatch => {
     );
 };
 
-
 // Delete Post
 export const deletePost = id => dispatch => {
   axios
@@ -89,7 +85,6 @@ export const deletePost = id => dispatch => {
     );
 };
 
-
 // Add Like
 export const addLike = id => dispatch => {
   axios
@@ -103,7 +98,6 @@ export const addLike = id => dispatch => {
     );
 };
 
-
 // Remove Like
 export const removeLike = id => dispatch => {
   axios
@@ -116,7 +110,6 @@ export const removeLike = id => dispatch => {
       })
     );
 };
-
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
@@ -137,7 +130,6 @@ export const addComment = (postId, commentData) => dispatch => {
     );
 };
 
-
 // Delete Comment
 export const deleteComment = (postId, commentId) => dispatch => {
   axios
@@ -156,14 +148,12 @@ export const deleteComment = (postId, commentId) => dispatch => {
     );
 };
 
-
 // Set loading state
 export const setPostLoading = () => {
   return {
     type: POST_LOADING
   };
 };
-
 
 // Clear errors
 export const clearErrors = () => {
